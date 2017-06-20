@@ -20,15 +20,17 @@
     <%= sidenav_child_path_match_li ['/one', '/two'] do %>
       <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Menu Example<span class="fa arrow"></span></a>
       <%= sidenav_child_path_match_ul ['/one', '/two'], 'nav nav-second-level' do %>
-        <%= sidenav_path_match_activatable_li_tag '/one' do %>
-          <%= link_to "One", one_path %>
+
+        <% @installations = ['/one', '/two']%>
+        <% @installations.each do |inst| %>
+         <%= activatable_li_tag inst do %>
+           <%= link_to inst[1..-1].upcase, inst %>
+         <% end %>
         <% end %>
-        <%= sidenav_path_match_activatable_li_tag '/two' do %>
-          <%= link_to "Two", two_path %>
-        <% end %>
-      <% end %>
-      <!-- /.nav-second-level -->
+
+      <% end %> <!-- /.nav-second-level -->
     <% end %>
+
     <%= sidenav_child_path_match_li ['/three', '/four'] do %>
       <a href="#"><i class="fa fa-sitemap fa-fw"></i> Another Bunch of Options<span class="fa arrow"></span></a>
       <%= sidenav_child_path_match_ul ['/three', '/four'], 'nav nav-second-level' do %>
